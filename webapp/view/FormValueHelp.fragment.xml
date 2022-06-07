@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<TableSelectDialog id="formSearch" noDataText="No Form Found" title="Select Form" search=".handleSearchForm"
+		confirm=".handleValueHelpCloseForm" cancel=".handleValueHelpCloseForm" growing="true" items="{ path : '/FormHeaderSet' }" resizable="true">
+		<ColumnListItem vAlign="Middle">
+			<cells>
+				<ObjectIdentifier text="{path : 'Id', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true, maxLength : 10 }}"/>
+				<ObjectIdentifier title="{DealerName}"
+					text="{ path : 'DealerId', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true, maxLength : 10 } }"/>
+				<ObjectAttribute text="{ path: 'CreatedOn', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true } }"/>
+				<ObjectStatus
+					text="{=${Status}==='0'?'New':(${Status}==='1'?'Draft':(${Status}==='2'?'Error':(${Status}==='3'?'Complete':'Unknown')))}" 
+					state="{=${Status}==='0'?'Information':(${Status}==='1'?'Warning':(${Status}==='2'?'Error':(${Status}==='3'?'Success':'None')))}"
+					icon="{=${Status}==='0'?'sap-icon://information':(${Status}==='1'?'sap-icon://alert':(${Status}==='2'?'sap-icon://error':(${Status}==='3'?'sap-icon://sys-enter-2':'')))}"/>
+				<ObjectAttribute text="{ProcessLog}"/>
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column width="12em">
+				<header>
+					<Text text="Form ID"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Dealer"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="CreatedOn"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Status"/>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text text="Process Log"/>
+				</header>
+			</Column>			
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

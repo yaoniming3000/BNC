@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<TableSelectDialog id="dealerSearch" noDataText="No Dealer Found" title="Select Dealer" search=".handleSearch" confirm=".handleValueHelpClose"
+		cancel=".handleValueHelpClose" growing="true" items="{ path : '/DealerSet' }" resizable="true">
+		<ColumnListItem vAlign="Middle">
+			<cells>
+				<ObjectIdentifier title="{Name1}" text="{Id}"/>
+				<Text text="{City}" />
+				<Text text="{Region}" />
+				<Text text="{PostCode}" />
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column width="12em" >
+				<header>
+					<Text text="Dealer"/>
+				</header>
+			</Column>
+			<Column width="12em" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+				<header>
+					<Text text="City"/>
+				</header>
+			</Column>	
+			<Column width="5em" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+				<header>
+					<Text text="Region"/>
+				</header>
+			</Column>	
+			<Column width="5em">
+				<header>
+					<Text text="Post Code"/>
+				</header>
+			</Column>				
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>
