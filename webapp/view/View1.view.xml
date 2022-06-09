@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
 	controllerName="BNC.bnetDealerCreate.controller.View1" displayBlock="true">
-	<Shell id="shell">
+	<Shell id="shell" appWidthLimited="false" title="Bnet Dealer Setup">
 		<App id="app">
 			<uxap:ObjectPageLayout id="objectPageLayout" alwaysShowContentHeader="true" showFooter="true">
 				<uxap:headerTitle>
