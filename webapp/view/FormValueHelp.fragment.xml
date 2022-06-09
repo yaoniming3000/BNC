@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<TableSelectDialog id="formSearch" noDataText="No Form Found" title="Select Form" search=".handleSearchForm"
-		confirm=".handleValueHelpCloseForm" cancel=".handleValueHelpCloseForm" growing="true" items="{ path : '/FormHeaderSet' }" resizable="true">
+		confirm=".handleValueHelpCloseForm" cancel=".handleValueHelpCloseForm" growing="true" items="{ path : '/FormF4Set' }" resizable="true">
 		<ColumnListItem vAlign="Middle">
 			<cells>
 				<ObjectIdentifier text="{path : 'Id', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true, maxLength : 10 }}"/>
@@ -15,27 +15,27 @@
 			</cells>
 		</ColumnListItem>
 		<columns>
-			<Column width="12em">
+			<Column width="10em">
 				<header>
 					<Text text="Form ID"/>
 				</header>
 			</Column>
-			<Column>
+			<Column width="auto">
 				<header>
 					<Text text="Dealer"/>
 				</header>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Desktop" demandPopin="true" width="8em">
 				<header>
-					<Text text="CreatedOn"/>
+					<Text text="Created On"/>
 				</header>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="WithoutHeader" width="8em">
 				<header>
 					<Text text="Status"/>
 				</header>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
 				<header>
 					<Text text="Process Log"/>
 				</header>

@@ -104,10 +104,10 @@ sap.ui.define([
 		onSave: function (oEvent) {
 			var oModel = this.getView().getModel();
 			var oHeader = this.getView().getBindingContext().getObject();
-			if (oHeader.Status=="3") { //form is completed
+			if (oHeader.Status == "3") { //form is completed
 				sap.m.MessageToast.show("Form has completed");
 				return;
-			}			
+			}
 			var sPath = "/FormHeaderSet('" + oHeader.Id + "')";
 			var self = this;
 			var mParam = {
@@ -135,7 +135,7 @@ sap.ui.define([
 		onSubmit: function (oEvent) {
 			var oModel = this.getView().getModel();
 			var oHeader = this.getView().getBindingContext().getObject();
-			if (oHeader.Status=="3") { //form is completed
+			if (oHeader.Status == "3") { //form is completed
 				sap.m.MessageToast.show("Form has completed");
 				return;
 			}
@@ -160,7 +160,7 @@ sap.ui.define([
 				oModel.create("/FormHeaderSet", oHeader, mParam);
 			} else {
 				oModel.update(sPath, oHeader, mParam);
-			}			
+			}
 		},
 
 		onValueHelpRequested: function () {
@@ -181,9 +181,11 @@ sap.ui.define([
 				oValueHelpDialog.open();
 			}.bind(this));
 		},
-		
+
 		_configFormHelpDialog: function (oDialog) {
-			  	oDialog.getAggregation("_dialog").getSubHeader().getContentMiddle()[0].setPlaceholder("Enter form ID, status or dealer name...");
+			oDialog.getAggregation("_dialog").getSubHeader().getContentMiddle()[0].setPlaceholder("Enter form ID, status or dealer name...");
+			oDialog.setContentWidth("900px");
+			oDialog.setContentHeight("600px");
 		},
 
 		handleSearchForm: function (oEvent) {
@@ -225,11 +227,11 @@ sap.ui.define([
 
 			}
 		},
-		
+
 		_readForm: function (self, sPath) {
 			var mParam = {
 				success: function (odata, resp) {
-					self.getView().bindElement(sPath); 
+					self.getView().bindElement(sPath);
 					self.oHeaderOld = self.getView().getBindingContext().getObject();
 					self.getView().byId("inDealer").setValue(parseInt(self.oHeaderOld.DealerId, 10));
 				},
@@ -267,7 +269,7 @@ sap.ui.define([
 			var oHeader = this.getView().getBindingContext().getObject();
 			oHeader.__metadata = null;
 			this.oHeaderOld.__metadata = null;
-			if (oHeader.Status==="3") { //form is completed
+			if (oHeader.Status === "3") { //form is completed
 				return false;
 			}
 			if (JSON.stringify(oHeader) === JSON.stringify(this.oHeaderOld)) {

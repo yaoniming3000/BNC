@@ -4,18 +4,36 @@
 	<edmx:DataServices m:DataServiceVersion="2.0">
 		<Schema Namespace="ZBNET_DEALER_CREATE_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"><Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
 			<EntityType Name="FormHeader" sap:content-version="1">
-				<Key><PropertyRef Name="Id"/></Key><Property Name="DealerGrp" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Customer grp 1" sap:creatable="false"
-					sap:sortable="false"/><Property Name="DealerName" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Name 1"/><Property Name="BlockStatus" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Order block" sap:creatable="false"
-					sap:sortable="false"/><Property Name="ProcessLog" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Explanation" sap:creatable="false"
-					sap:sortable="false"/><Property Name="DealerCls" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Customer group" sap:creatable="false"
-					sap:sortable="false"/><Property Name="SoCreate" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Sales Order Create"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Form ID" sap:updatable="false"/><Property Name="Status" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Form Status"/><Property Name="DealerId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Customer"/><Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created On"/><Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Created By"/><Property Name="Action" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Action" sap:creatable="false" sap:sortable="false"/></EntityType>
+				<Key><PropertyRef Name="Id"/></Key><Property Name="BnetType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Dealer BNET Type"/><Property Name="DealerAddress" Type="Edm.String" sap:unicode="false" sap:label="Dealer Address" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="DealerGrp" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Customer grp 1" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="DealerName" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Name 1"/><Property Name="PriceAccess" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Price Access"/><Property Name="DealerGrpTxt" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Explanation" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BlockStatusTxt" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Explanation" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="TimeStamp" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Time Stamp"/><Property Name="DealerClsTxt" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Explanation" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BlockStatus" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Order block" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="ProcessLog" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Explanation" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="DealerCls" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Customer group" sap:creatable="false"
+					sap:sortable="false"/><Property Name="SoCreate" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Sales Order Create"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Form ID"/><Property Name="Status" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Form Status"/><Property Name="DealerId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Customer"/><Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created On"/><Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Created By"/><Property Name="Action" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Action" sap:creatable="false" sap:sortable="false"/></EntityType>
 			<EntityType Name="Dealer" sap:content-version="1">
 				<Key><PropertyRef Name="Id"/></Key><Property Name="City" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false"
 					sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false"
 					sap:updatable="false"/><Property Name="Name1" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false"/><Property Name="Region" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Region" sap:creatable="false" sap:updatable="false"/><Property Name="PostCode" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Postal Code" sap:creatable="false"
 					sap:updatable="false"/></EntityType>
+			<EntityType Name="FormF4" sap:content-version="1">
+				<Key><PropertyRef Name="Id"/></Key><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Form ID" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Status" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Form Status" sap:creatable="false"
+					sap:updatable="false"/><Property Name="DealerId" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false"
+					sap:updatable="false"/><Property Name="DealerName" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false"/><Property Name="BnetType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Dealer BNET Type" sap:creatable="false"
+					sap:updatable="false"/><Property Name="PriceAccess" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Price Access" sap:creatable="false"
+					sap:updatable="false"/><Property Name="SoCreate" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Sales Order Create" sap:creatable="false"
+					sap:updatable="false"/><Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created On" sap:creatable="false"
+					sap:updatable="false"/><Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:creatable="false"
+					sap:updatable="false"/><Property Name="ProcessLog" Type="Edm.String" MaxLength="50" sap:unicode="false" sap:label="Explanation" sap:creatable="false"
+					sap:updatable="false"/><Property Name="TimeStamp" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
 			<EntityContainer Name="ZBNET_DEALER_CREATE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="FormHeaderSet" EntityType="ZBNET_DEALER_CREATE_SRV.FormHeader" sap:deletable="false" sap:pageable="false"
 				sap:content-version="1"/><EntitySet Name="DealerSet" EntityType="ZBNET_DEALER_CREATE_SRV.Dealer" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="FormF4Set" EntityType="ZBNET_DEALER_CREATE_SRV.FormF4" sap:creatable="false" sap:updatable="false" sap:deletable="false"
 				sap:pageable="false" sap:content-version="1"/>
 				<FunctionImport Name="onDealerEnt" ReturnType="ZBNET_DEALER_CREATE_SRV.FormHeader" EntitySet="FormHeaderSet" m:HttpMethod="GET"
 					sap:action-for="ZBNET_DEALER_CREATE_SRV.FormHeader"><Parameter Name="DealerId" Type="Edm.String" Mode="In" MaxLength="10"/></FunctionImport>
