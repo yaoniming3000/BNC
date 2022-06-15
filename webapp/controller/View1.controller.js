@@ -30,6 +30,9 @@ sap.ui.define([
 			};
 			oModel.read("/FormHeaderSet('0000000000')", mParam);
 			this.getView().byId("inDealer").setValue("");
+			this.getView().byId("feBnetType").getAggregation("_label").setRequired(true);
+			this.getView().byId("fePrice").getAggregation("_label").setRequired(true);
+			this.getView().byId("feCreate").getAggregation("_label").setRequired(true);
 		},
 
 		onDealerF4: function () {
@@ -144,7 +147,7 @@ sap.ui.define([
 			var mParam = {
 				eTag: "Test eTag",
 				success: function (odata, resp) {
-					sap.m.MessageToast.show("Bnet dealer setup has finished");
+					sap.m.MessageToast.show("Process has been finished");
 					if (oHeader.Id == 0) {
 						sPath = "/FormHeaderSet('" + resp.data.Id + "')";
 					}
@@ -165,7 +168,11 @@ sap.ui.define([
 
 		onValueHelpRequested: function () {
 			var oView = this.getView();
-
+			var self = this;
+			if (this._pValueHelpDialogForm) {
+				this.formF4Dialog.destroy();
+				this._pValueHelpDialogForm = null;
+			}
 			if (!this._pValueHelpDialogForm) {
 				this._pValueHelpDialogForm = Fragment.load({
 					id: oView.getId(),
@@ -178,6 +185,7 @@ sap.ui.define([
 			}
 			this._pValueHelpDialogForm.then(function (oValueHelpDialog) {
 				this._configFormHelpDialog(oValueHelpDialog);
+				self.formF4Dialog = oValueHelpDialog;
 				oValueHelpDialog.open();
 			}.bind(this));
 		},
@@ -235,7 +243,10 @@ sap.ui.define([
 					self.oHeaderOld = self.getView().getBindingContext().getObject();
 					self.getView().byId("inDealer").setValue(parseInt(self.oHeaderOld.DealerId, 10));
 				},
-				error: function (oError) {}
+				error: function (oError) {
+					var mError = JSON.parse(oError.responseText);
+					MessageToast.show(mError.error.message.value);					
+				}
 			};
 			self.getView().getModel().read(sPath, mParam);
 		},

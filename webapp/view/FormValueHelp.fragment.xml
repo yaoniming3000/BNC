@@ -9,8 +9,7 @@
 				<ObjectAttribute text="{ path: 'CreatedOn', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy', UTC: true } }"/>
 				<ObjectStatus
 					text="{=${Status}==='0'?'New':(${Status}==='1'?'Draft':(${Status}==='2'?'Error':(${Status}==='3'?'Complete':'Unknown')))}" 
-					state="{=${Status}==='0'?'Information':(${Status}==='1'?'Warning':(${Status}==='2'?'Error':(${Status}==='3'?'Success':'None')))}"
-					icon="{=${Status}==='0'?'sap-icon://information':(${Status}==='1'?'sap-icon://alert':(${Status}==='2'?'sap-icon://error':(${Status}==='3'?'sap-icon://sys-enter-2':'')))}"/>
+					state="{=${Status}==='0'?'Information':(${Status}==='1'?'Warning':(${Status}==='2'?'Error':(${Status}==='3'?'Success':'None')))}"/>
 				<ObjectAttribute text="{ProcessLog}"/>
 			</cells>
 		</ColumnListItem>
