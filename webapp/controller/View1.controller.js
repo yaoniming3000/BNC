@@ -8,8 +8,9 @@ sap.ui.define([
 	'sap/ui/model/type/String',
 	'sap/m/ColumnListItem',
 	'sap/m/Label',
-	"sap/m/MessageBox"
-], function (Controller, Fragment, MessageToast, Filter, FilterOperator, SearchField, TypeString, ColumnListItem, Label, MessageBox) {
+	"sap/m/MessageBox",
+	'sap/ui/core/BusyIndicator'
+], function (Controller, Fragment, MessageToast, Filter, FilterOperator, SearchField, TypeString, ColumnListItem, Label, MessageBox, BusyIndicator) {
 	"use strict";
 
 	return Controller.extend("BNC.bnetDealerCreate.controller.View1", {
@@ -152,13 +153,16 @@ sap.ui.define([
 						sPath = "/FormHeaderSet('" + resp.data.Id + "')";
 					}
 					self._readForm(self, sPath);
+					BusyIndicator.hide();
 				},
 				error: function (oError) {
 					var mError = JSON.parse(oError.responseText);
 					sap.m.MessageToast.show(mError.error.message.value);
+					BusyIndicator.hide();
 				}
 			};
 			oHeader.Action = "SUBMIT";
+			BusyIndicator.show();
 			if (oHeader.Id == 0) {
 				oModel.create("/FormHeaderSet", oHeader, mParam);
 			} else {
