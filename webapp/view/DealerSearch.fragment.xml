@@ -1,35 +1,73 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<TableSelectDialog id="dealerSearch" noDataText="No Dealer Found" title="Select Dealer" search=".handleSearch" confirm=".handleValueHelpClose"
-		cancel=".handleValueHelpClose" growing="true" items="{ path : '/DealerSet' }" resizable="true">
-		<ColumnListItem vAlign="Middle">
-			<cells>
-				<ObjectIdentifier title="{Name1}" text="{Id}"/>
-				<Text text="{City}" />
-				<Text text="{Region}" />
-				<Text text="{PostCode}" />
-			</cells>
-		</ColumnListItem>
-		<columns>
-			<Column width="12em" >
-				<header>
-					<Text text="Dealer"/>
-				</header>
-			</Column>
-			<Column width="12em" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
-				<header>
-					<Text text="City"/>
-				</header>
-			</Column>	
-			<Column width="5em" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
-				<header>
-					<Text text="Region"/>
-				</header>
-			</Column>	
-			<Column width="5em">
-				<header>
-					<Text text="Post Code"/>
-				</header>
-			</Column>				
-		</columns>
-	</TableSelectDialog>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog id="dealerSearch" title="Select Dealer" afterClose="onDealerF4Close">
+		<beginButton>
+			<Button xmlns="sap.m" text="Select" id="button0" type="Emphasized" press=".handleValueHelpClose"/>
+		</beginButton>
+		<endButton>
+			<Button xmlns="sap.m" text="Cancel" id="button1" press=".onDealerF4Close"/>
+		</endButton>
+		<content>
+			<VBox width="100%" direction="Column" id="vbox0">
+				<items>
+					<f:SimpleForm editable="true" layout="ResponsiveGridLayout" emptySpanXL="3" emptySpanL="3" emptySpanM="1" emptySpanS="0">
+						<f:content>
+							<core:Title text="Search Filters"/>
+							<Label text="Dealer Country" width="100%"/>
+							<RadioButtonGroup xmlns="sap.m" columns="2" id="rdCountry">
+								<buttons>
+									<RadioButton text="Australia" class="sapUiSmallMarginEnd"/>
+									<RadioButton text="New Zealand"/>
+								</buttons>
+							</RadioButtonGroup>
+						</f:content>
+						<Label text="Dealer Detail"/>
+						<Input width="100%" id="inDealerDetail" placeholder="Enter dealer ID or name..." submit=".handleSearch"/>
+						<Label width="100%"/>
+						<Button xmlns="sap.m" text="Search" width="80px" class="sapUiSmallMarginTop" press=".handleSearch"/>
+					</f:SimpleForm>
+					<Table headerText="Search Results" noDataText="No Dealer Found" id="tbDealer" alternateRowColors="true" mode="SingleSelectLeft"
+						growing="true" growingThreshold="20" sticky="ColumnHeaders" items="{ path : '/DealerSet', parameters: { $count: true } }">
+						<items>
+							<ColumnListItem type="Active" id="item0">
+								<cells>
+									<ObjectIdentifier title="{Name1}" text="{Id}"/>
+									<Text text="{City}"/>
+									<Text text="{Region}"/>
+									<Text text="{PostCode}"/>
+									<Text text="{Country}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column width="12em">
+								<header>
+									<Text text="Dealer"/>
+								</header>
+							</Column>
+							<Column width="12em" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+								<header>
+									<Text text="City"/>
+								</header>
+							</Column>
+							<Column width="5em" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+								<header>
+									<Text text="Region"/>
+								</header>
+							</Column>
+							<Column width="5em">
+								<header>
+									<Text text="Post Code"/>
+								</header>
+							</Column>
+							<Column width="5em" visible="false">
+								<header>
+									<Text text="Country"/>
+								</header>
+							</Column>							
+						</columns>
+					</Table>
+				</items>
+			</VBox>
+		</content>
+	</Dialog>
 </core:FragmentDefinition>

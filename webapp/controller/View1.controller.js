@@ -10,7 +10,8 @@ sap.ui.define([
 	'sap/m/Label',
 	"sap/m/MessageBox",
 	'sap/ui/core/BusyIndicator'
-], function (Controller, Fragment, MessageToast, Filter, FilterOperator, SearchField, TypeString, ColumnListItem, Label, MessageBox, BusyIndicator) {
+], function (Controller, Fragment, MessageToast, Filter, FilterOperator, SearchField, TypeString, ColumnListItem, Label, MessageBox,
+	BusyIndicator) {
 	"use strict";
 
 	return Controller.extend("BNC.bnetDealerCreate.controller.View1", {
@@ -21,11 +22,11 @@ sap.ui.define([
 		_initForm: function () {
 			var oModel = this.getView().getModel();
 			oModel.resetChanges();
-			var self = this;
+			var that = this;
 			var mParam = {
 				success: function (odata, resp) {
-					self.getView().bindElement("/FormHeaderSet('0000000000')"); //id = 0 stands for a new form
-					self.oHeaderOld = self.getView().getBindingContext().getObject();
+					that.getView().bindElement("/FormHeaderSet('0000000000')"); //id = 0 stands for a new form
+					that.oHeaderOld = that.getView().getBindingContext().getObject();
 				},
 				error: function (oError) {}
 			};
@@ -37,6 +38,7 @@ sap.ui.define([
 		},
 
 		onDealerF4: function () {
+			
 			var oView = this.getView();
 
 			if (!this._pValueHelpDialog) {
@@ -57,35 +59,57 @@ sap.ui.define([
 		},
 
 		_configValueHelpDialog: function (dealerDialog) {
-			dealerDialog.getAggregation("_dialog").getSubHeader().getContentMiddle()[0].setPlaceholder("Enter dealer ID or name...");
+			//	dealerDialog.getAggregation("_dialog").getSubHeader().getContentMiddle()[0].setPlaceholder("Enter dealer ID or name...");
 			dealerDialog.setContentWidth("800px");
 			dealerDialog.setContentHeight("600px");
 		},
 
 		handleSearch: function (oEvent) {
-			var sValue = oEvent.getParameter("value");
+			var sValue = this.byId("inDealerDetail").getValue();
+			var sCountry = "";
+			var selectCtr = this.byId("rdCountry").getSelectedIndex();
+			switch (selectCtr) {
+				case 0:
+					sCountry = "AU";
+					break;
+				case 1:
+					sCountry = "NZ";
+					break;					
+			}
 			var oFilter = new Filter("Name1", FilterOperator.Contains, sValue);
-			var oBinding = oEvent.getSource().getBinding("items");
-			oBinding.filter([oFilter]);
+			var oFilterCtr = new Filter("Country", FilterOperator.EQ, sCountry);
+			var aFilter = [oFilter, oFilterCtr];
+			var oBinding = this.byId("tbDealer").getBinding("items");
+			oBinding.filter(aFilter);
 		},
 
 		handleValueHelpClose: function (oEvent) {
 			// reset the filter
-			var oBinding = oEvent.getSource().getBinding("items");
-			oBinding.filter([]);
-
-			var aContexts = oEvent.getParameter("selectedContexts");
+			var aContexts = this.byId("tbDealer").getSelectedContexts();
 			if (aContexts && aContexts.length) {
 				var dealerId = aContexts[0].getObject().Id;
 				this.getView().byId("inDealer").setValue(dealerId);
 				this.getView().byId("inDealer").fireChange();
+				this.onDealerF4Close();
+			} else {
+				MessageToast.show("No dealer is selected");
 			}
+		},
+
+		onDealerF4Close: function () {
+			var oBinding = this.byId("tbDealer").getBinding("items");
+			oBinding.filter([]);
+			this.byId("tbDealer").removeSelections();
+
+			this._pValueHelpDialog.then(function (oValueHelpDialog) {
+				oValueHelpDialog.close();
+			}.bind(this));
 		},
 
 		onDealerEnter: function (oEvent) {
 			var dealerId = this.getView().byId("inDealer").getValue();
 			var oModel = this.getView().getModel();
-			var self = this;
+			var that = this;
 			oModel.callFunction("/onDealerEnt", {
 				method: "GET",
 				urlParameters: {
@@ -94,9 +118,9 @@ sap.ui.define([
 				success: function (resp) {
 					// oModel.resetChanges();
 					// var oContext = oModel.createEntry("/FormHeaderSet", resp);
-					// self.getView().setBindingConetext(oContext);
-					self.getView().bindElement("/FormHeaderSet('0000000000')");
-					self.oHeaderOld = self.getView().getBindingContext().getObject();
+					// that.getView().setBindingConetext(oContext);
+					that.getView().bindElement("/FormHeaderSet('0000000000')");
+					that.oHeaderOld = that.getView().getBindingContext().getObject();
 				},
 				error: function (oError) {
 					var mError = JSON.parse(oError.responseText);
@@ -113,19 +137,19 @@ sap.ui.define([
 				return;
 			}
 			var sPath = "/FormHeaderSet('" + oHeader.Id + "')";
-			var self = this;
+			var that = this;
 			var mParam = {
-				eTag: "Test eTag",
 				success: function (odata, resp) {
 					sap.m.MessageToast.show("Form has been saved");
 					if (oHeader.Id == 0) {
 						sPath = "/FormHeaderSet('" + resp.data.Id + "')";
 					}
-					self._readForm(self, sPath);
+					that._readForm(that, sPath);
 				},
 				error: function (oError) {
 					var mError = JSON.parse(oError.responseText);
 					sap.m.MessageToast.show(mError.error.message.value);
+					that._readForm(that, sPath);
 				}
 			};
 			oHeader.Action = "SAVE";
@@ -144,20 +168,20 @@ sap.ui.define([
 				return;
 			}
 			var sPath = "/FormHeaderSet('" + oHeader.Id + "')";
-			var self = this;
+			var that = this;
 			var mParam = {
-				eTag: "Test eTag",
 				success: function (odata, resp) {
 					sap.m.MessageToast.show("Process has been finished");
 					if (oHeader.Id == 0) {
 						sPath = "/FormHeaderSet('" + resp.data.Id + "')";
 					}
-					self._readForm(self, sPath);
+					that._readForm(that, sPath);
 					BusyIndicator.hide();
 				},
 				error: function (oError) {
 					var mError = JSON.parse(oError.responseText);
 					sap.m.MessageToast.show(mError.error.message.value);
+					that._readForm(that, sPath);
 					BusyIndicator.hide();
 				}
 			};
@@ -172,7 +196,7 @@ sap.ui.define([
 
 		onValueHelpRequested: function () {
 			var oView = this.getView();
-			var self = this;
+			var that = this;
 			if (this._pValueHelpDialogForm) {
 				this.formF4Dialog.destroy();
 				this._pValueHelpDialogForm = null;
@@ -189,7 +213,7 @@ sap.ui.define([
 			}
 			this._pValueHelpDialogForm.then(function (oValueHelpDialog) {
 				this._configFormHelpDialog(oValueHelpDialog);
-				self.formF4Dialog = oValueHelpDialog;
+				that.formF4Dialog = oValueHelpDialog;
 				oValueHelpDialog.open();
 			}.bind(this));
 		},
@@ -211,7 +235,7 @@ sap.ui.define([
 			// reset the filter
 			var oBinding = oEvent.getSource().getBinding("items");
 			oBinding.filter([]);
-			var self = this;
+			var that = this;
 			var aContexts = oEvent.getParameter("selectedContexts");
 			if (aContexts && aContexts.length) {
 				var bChanged = this._hasHeaderChange();
@@ -225,38 +249,38 @@ sap.ui.define([
 						emphasizedAction: MessageBox.Action.NO,
 						onClose: function (sAction) {
 							if (sAction === sap.m.MessageBox.Action.YES) {
-								self.getView().getModel().resetChanges();
-								self._readForm(self, sPath);
+								that.getView().getModel().resetChanges();
+								that._readForm(that, sPath);
 							} else {
 								return;
 							}
 						}
 					});
 				} else {
-					self.getView().getModel().resetChanges();
-					self._readForm(self, sPath);
+					that.getView().getModel().resetChanges();
+					that._readForm(that, sPath);
 				}
 
 			}
 		},
 
-		_readForm: function (self, sPath) {
+		_readForm: function (that, sPath) {
 			var mParam = {
 				success: function (odata, resp) {
-					self.getView().bindElement(sPath);
-					self.oHeaderOld = self.getView().getBindingContext().getObject();
-					self.getView().byId("inDealer").setValue(parseInt(self.oHeaderOld.DealerId, 10));
+					that.getView().bindElement(sPath);
+					that.oHeaderOld = that.getView().getBindingContext().getObject();
+					that.getView().byId("inDealer").setValue(parseInt(that.oHeaderOld.DealerId, 10));
 				},
 				error: function (oError) {
 					var mError = JSON.parse(oError.responseText);
-					MessageToast.show(mError.error.message.value);					
+					MessageToast.show(mError.error.message.value);
 				}
 			};
-			self.getView().getModel().read(sPath, mParam);
+			that.getView().getModel().read(sPath, mParam);
 		},
 
 		onNewForm: function () {
-			var self = this;
+			var that = this;
 			if (this._hasHeaderChange()) {
 				var msg = "Unsaved changes will be lost. Do you want to proceed?";
 				MessageBox.warning(msg, {
@@ -265,8 +289,8 @@ sap.ui.define([
 					emphasizedAction: MessageBox.Action.NO,
 					onClose: function (sAction) {
 						if (sAction === sap.m.MessageBox.Action.YES) {
-							self.getView().getModel().resetChanges();
-							self._initForm();
+							that.getView().getModel().resetChanges();
+							that._initForm();
 							MessageToast.show("New form loaded");
 						} else {
 							return;
@@ -274,8 +298,8 @@ sap.ui.define([
 					}
 				});
 			} else {
-				self.getView().getModel().resetChanges();
-				self._initForm();
+				that.getView().getModel().resetChanges();
+				that._initForm();
 				MessageToast.show("New form loaded");
 			}
 		},
@@ -292,6 +316,41 @@ sap.ui.define([
 			} else {
 				return true;
 			}
+		},
+
+		onDelete: function () {
+			var msg = "Form will be marked as deleted. Do you want to proceed?";
+			var that = this;
+			var oModel = this.getView().getModel();
+			var oHeader = this.getView().getBindingContext().getObject();
+			var sPath = "/FormHeaderSet('" + oHeader.Id + "')";
+			var mParam = {
+				success: function (odata, resp) {
+					oModel.resetChanges();
+					that._initForm();
+					sap.m.MessageToast.show("Form " + oHeader.Id + " has been deleted");
+					BusyIndicator.hide();
+				},
+				error: function (oError) {
+					var mError = JSON.parse(oError.responseText);
+					sap.m.MessageToast.show(mError.error.message.value);
+					BusyIndicator.hide();
+				}
+			};
+
+			MessageBox.warning(msg, {
+				title: "Confirm",
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				emphasizedAction: MessageBox.Action.NO,
+				onClose: function (sAction) {
+					if (sAction === sap.m.MessageBox.Action.YES) {
+						BusyIndicator.show();
+						oModel.remove(sPath, mParam);
+					} else {
+						return;
+					}
+				}
+			});
 		}
 	});
 });

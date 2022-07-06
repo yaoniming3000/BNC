@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<TableSelectDialog id="formSearch" noDataText="No Form Found" title="Select Form" search=".handleSearchForm"
-		confirm=".handleValueHelpCloseForm" cancel=".handleValueHelpCloseForm" growing="true" items="{ path : '/FormF4Set' }" resizable="true">
+		confirm=".handleValueHelpCloseForm" cancel=".handleValueHelpCloseForm" growing="true" items="{ path : '/FormF4Set' }" resizable="false">
 		<ColumnListItem vAlign="Middle">
 			<cells>
 				<ObjectIdentifier text="{path : 'Id', type : 'sap.ui.model.odata.type.String', constraints: { isDigitSequence : true, maxLength : 10 }}"/>
