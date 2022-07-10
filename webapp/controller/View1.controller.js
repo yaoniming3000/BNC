@@ -20,7 +20,7 @@ sap.ui.define([
 		},
 
 		_initForm: function () {
-			var oModel = this.getView().getModel();
+			var oModel = this.getOwnerComponent().getModel();
 			oModel.resetChanges();
 			var that = this;
 			var mParam = {

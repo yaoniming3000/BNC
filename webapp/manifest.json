@@ -97,7 +97,7 @@
 			"routes": [
 				{
 					"name": "RouteView1",
-					"pattern": "RouteView1",
+					"pattern": "",
 					"target": [
 						"TargetView1"
 					]
@@ -108,8 +108,8 @@
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewId": "View1",
-					"viewName": "View1"
+					"viewId": "home",
+					"viewName": "Home"
 				}
 			}
 		}
