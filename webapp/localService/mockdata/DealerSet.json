@@ -1,0 +1,111 @@
+[{
+	"City": "City 1",
+	"Country": "Country 1",
+	"Id": "Id 1",
+	"Name1": "Name1 1",
+	"Region": "Region 1",
+	"PostCode": "PostCode 1",
+	"__metadata": {
+		"uri": "DealerSet('Id%201')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 2",
+	"Country": "Country 2",
+	"Id": "Id 2",
+	"Name1": "Name1 2",
+	"Region": "Region 2",
+	"PostCode": "PostCode 2",
+	"__metadata": {
+		"uri": "DealerSet('Id%202')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 3",
+	"Country": "Country 3",
+	"Id": "Id 3",
+	"Name1": "Name1 3",
+	"Region": "Region 3",
+	"PostCode": "PostCode 3",
+	"__metadata": {
+		"uri": "DealerSet('Id%203')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 4",
+	"Country": "Country 4",
+	"Id": "Id 4",
+	"Name1": "Name1 4",
+	"Region": "Region 4",
+	"PostCode": "PostCode 4",
+	"__metadata": {
+		"uri": "DealerSet('Id%204')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 5",
+	"Country": "Country 5",
+	"Id": "Id 5",
+	"Name1": "Name1 5",
+	"Region": "Region 5",
+	"PostCode": "PostCode 5",
+	"__metadata": {
+		"uri": "DealerSet('Id%205')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 6",
+	"Country": "Country 6",
+	"Id": "Id 6",
+	"Name1": "Name1 6",
+	"Region": "Region 6",
+	"PostCode": "PostCode 6",
+	"__metadata": {
+		"uri": "DealerSet('Id%206')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 7",
+	"Country": "Country 7",
+	"Id": "Id 7",
+	"Name1": "Name1 7",
+	"Region": "Region 7",
+	"PostCode": "PostCode 7",
+	"__metadata": {
+		"uri": "DealerSet('Id%207')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 8",
+	"Country": "Country 8",
+	"Id": "Id 8",
+	"Name1": "Name1 8",
+	"Region": "Region 8",
+	"PostCode": "PostCode 8",
+	"__metadata": {
+		"uri": "DealerSet('Id%208')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 9",
+	"Country": "Country 9",
+	"Id": "Id 9",
+	"Name1": "Name1 9",
+	"Region": "Region 9",
+	"PostCode": "PostCode 9",
+	"__metadata": {
+		"uri": "DealerSet('Id%209')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}, {
+	"City": "City 10",
+	"Country": "Country 10",
+	"Id": "Id 10",
+	"Name1": "Name1 10",
+	"Region": "Region 10",
+	"PostCode": "PostCode 10",
+	"__metadata": {
+		"uri": "DealerSet('Id%2010')",
+		"type": "ZBNET_DEALER_CREATE_SRV.Dealer"
+	}
+}]
