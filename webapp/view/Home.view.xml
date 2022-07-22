@@ -69,7 +69,7 @@
 													<Text xmlns="sap.m" text="{DealerCat}"/>
 												</f:fields>
 											</f:FormElement>
-											<f:FormElement label="Marlin/BNET Customer">
+											<f:FormElement label="Marlin/BNET Customer" visible="false">
 												<f:fields>
 													<Text xmlns="sap.m" text="{DealerType}"/>
 												</f:fields>

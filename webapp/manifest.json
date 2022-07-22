@@ -42,7 +42,7 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "BNC.bnetDealerCreate.view.View1",
+			"viewName": "BNC.bnetDealerCreate.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "View1"
